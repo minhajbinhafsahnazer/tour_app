@@ -52,4 +52,5 @@ TourProject is a user-friendly web application to add, view, and manage travel d
 
 ```bash
 git clone https://github.com/yourusername/tourproject.git
-cd tourproject
+cd api
+
