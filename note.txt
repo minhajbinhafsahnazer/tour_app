@@ -1,5 +1,5 @@
 http://127.0.0.1:8000/api/destinations/
-
+add_destination.png
 http://127.0.0.1:8000/api/destinations/%3Cid%3E/upload-image/
 
 http://127.0.0.1:8000/api/destinations/1/upload-image/
