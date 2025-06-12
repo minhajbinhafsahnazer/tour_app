@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">Add New Destination</h2>
+
+    <form method="post" enctype="multipart/form-data" class="needs-validation">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            {{ form.place_name.label_tag }} {{ form.place_name }}
+        </div>
+        <div class="mb-3">
+            {{ form.weather.label_tag }} {{ form.weather }}
+        </div>
+        <div class="mb-3">
+            {{ form.state.label_tag }} {{ form.state }}
+        </div>
+        <div class="mb-3">
+            {{ form.district.label_tag }} {{ form.district }}
+        </div>
+        <div class="mb-3">
+            {{ form.map_link.label_tag }} {{ form.map_link }}
+        </div>
+        <div class="mb-3">
+            {{ form.description.label_tag }} {{ form.description }}
+        </div>
+
+        <div class="mb-3">
+            {{ form.image.label_tag }} {{ form.image }}
+        </div>
+
+        <button type="submit" class="btn btn-success">Save Destination</button>
+    </form>
+</div>
+{% endblock %}

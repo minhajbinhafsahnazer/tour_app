@@ -1,0 +1,61 @@
+http://127.0.0.1:8000/api/destinations/
+
+http://127.0.0.1:8000/api/destinations/%3Cid%3E/upload-image/
+
+http://127.0.0.1:8000/api/destinations/1/upload-image/
+
+from urllib import request
+from django.shortcuts import render
+from rest_framework import viewsets
+from .models import Destination
+from .serializers import DestinationSerializer
+from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework import status
+from .models import DestinationImage
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from rest_framework import viewsets, filters
+from django.shortcuts import render, get_object_or_404, redirect
+from tourapp.forms import DestinationForm  # we'll create this soon
+
+
+class DestinationViewSet(viewsets.ModelViewSet):
+    queryset = Destination.objects.all()
+    serializer_class = DestinationSerializer
+    parser_classes = [MultiPartParser, FormParser]  # for image upload
+
+    @action(detail=True, methods=['post'], url_path='upload-image')
+    def upload_image(self, request, pk=None):
+        destination = self.get_object()
+        image_file = request.FILES.get('image')
+
+        filter_backends = [filters.SearchFilter]  # ✅ Enable search
+        search_fields = ['place_name'] 
+
+        if not image_file:
+            return Response({'error': 'No image file provided'}, status=400)
+
+        image = DestinationImage.objects.create(destination=destination, image=image_file)
+        return Response({
+            'message': 'Image uploaded successfully',
+            'image_url': image.image.url
+        }, status=201)
+    
+
+    def destination_detail(request, pk):
+        destination = get_object_or_404(Destination, pk=pk)
+        return render(request, 'tourapp/detail.html', {'destination': destination})
+    
+    def index(request):
+        destinations = Destination.objects.all()
+        return render(request, 'tourapp/index.html', {'destinations': destinations})
+    
+    def create_destination(request):
+        if request.method == 'POST':
+            form = DestinationForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                return redirect('index')
+        else:
+            form = DestinationForm()
+        return render(request, 'tourapp/create_destination.html', {'form': form})
