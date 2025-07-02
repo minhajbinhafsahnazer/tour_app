@@ -1,39 +1,23 @@
 {% extends "base.html" %}
-{% block content %}
-<h2 class="text-2xl font-semibold mb-4">
-    {% if query %}
-        Search results for "{{ query }}"
-    {% else %}
-        All Destinations
-    {% endif %}
-</h2>
+{% load static %}
 
-<div class="row">
+{% block content %}
+<!-- Hero Section Container -->
+
+  <div class="card-grid">
     {% for destination in destinations %}
-    <div class="col-md-4 mb-4">
-        <div class="card h-100 shadow-sm">
-            {% if destination.images.first %}
-                <img src="{{ destination.images.first.image.url }}" 
-                     class="card-img-top" 
-                     alt="Destination Image" 
-                     style="height: 200px; object-fit: cover; border-top-left-radius: .25rem; border-top-right-radius: .25rem;">
-            {% else %}
-                <img src="https://via.placeholder.com/400x200?text=No+Image" 
-                     class="card-img-top" 
-                     alt="No image available" 
-                     style="height: 200px; object-fit: cover;">
-            {% endif %}
-            <div class="card-body">
-                <h5 class="card-title">{{ destination.place_name }}</h5>
-                <p class="card-text">{{ destination.state }}, {{ destination.district }}</p>
-                <a href="{% url 'destination_detail' destination.id %}" class="btn btn-primary">View Details</a>
-            </div>
+      <a href="{% url 'destination_detail' destination.id %}" class="card">
+        <div class="card__background"
+             style="background-image: url('{% if destination.images.first %}{{ destination.images.first.image.url }}{% else %}https://via.placeholder.com/400x200?text=No+Image{% endif %}');">
         </div>
-    </div>
+        <div class="card__content">
+          <p class="card__category">{{ destination.state }}, {{ destination.district }}</p>
+          <h3 class="card__heading">{{ destination.place_name }}</h3>
+        </div>
+      </a>
     {% empty %}
-    <div class="col-12">
-        <p>No destinations found.</p>
-    </div>
+      <div class="text-white text-center">No destinations found.</div>
     {% endfor %}
-</div>
+  </div>
+
 {% endblock %}

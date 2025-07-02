@@ -1,0 +1,102 @@
+body {
+  background: #e4e2e5;
+}
+
+#wrap {
+  width: 800px;
+  height: 500px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  perspective: 1000px;
+  background: linear-gradient(to bottom, white 50%, #e4e2e5 50%);
+  box-shadow: 0 20px 30px -5px rgba(0,0,0,0.15);
+}
+
+.trigger {
+  display: none;
+}
+
+.innerwrap {
+  width: 1300px;
+  height: 1300px;
+  position: absolute;
+  top: -400px;
+  left: -725px;
+  transform-style: preserve-3d;
+}
+
+.cards {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s ease;
+  transform-style: preserve-3d;
+}
+
+.cardwrap {
+  position: absolute;
+  width: 250px;
+  height: 300px;
+  top: 50%;
+  left: 50%;
+  transform-origin: -350px center;
+  transform-style: preserve-3d;
+}
+
+.cardwrap:nth-child(1) { transform: rotate(0deg) translateX(350px); }
+.cardwrap:nth-child(2) { transform: rotate(45deg) translateX(350px); }
+.cardwrap:nth-child(3) { transform: rotate(90deg) translateX(350px); }
+.cardwrap:nth-child(4) { transform: rotate(135deg) translateX(350px); }
+.cardwrap:nth-child(5) { transform: rotate(180deg) translateX(350px); }
+.cardwrap:nth-child(6) { transform: rotate(225deg) translateX(350px); }
+.cardwrap:nth-child(7) { transform: rotate(270deg) translateX(350px); }
+.cardwrap:nth-child(8) { transform: rotate(315deg) translateX(350px); }
+
+.card {
+  width: 100%;
+  height: 100%;
+  background: #32cbfb;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+  position: relative;
+  border-radius: 1rem;
+  box-shadow: 0 20px 20px rgba(0,0,0,0.15);
+}
+
+.card .inner {
+  padding: 20px;
+  color: #222;
+  position: relative;
+  height: 100%;
+}
+
+.card h1 {
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+.card h1 span {
+  font-size: 12px;
+  display: block;
+  color: white;
+  background: #222;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.card .text, .card .link {
+  font-size: 14px;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.card .link {
+  color: #222;
+  background: white;
+  padding: 8px;
+  border-radius: 5px;
+  display: inline-block;
+  margin-top: 15px;
+  font-weight: bold;
+}

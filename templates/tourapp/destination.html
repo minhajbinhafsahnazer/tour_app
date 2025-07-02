@@ -1,0 +1,44 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block carousel %}
+<!-- Suppress carousel on this page -->
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/destination.css' %}">
+
+<div id="wrap" class="mt-5">
+  <!-- Radio Buttons for Carousel Rotation -->
+  {% for i in "12345678" %}
+    <input type="radio" name="rad" class="trigger" {% if forloop.first %}checked{% endif %}>
+  {% endfor %}
+
+  <!-- Inner Wrap -->
+  <div class="innerwrap">
+    {% for i in "12345678" %}
+      <input type="checkbox">
+    {% endfor %}
+
+    <!-- Cards -->
+    <div class="cards">
+      {% for country, desc in destinations %}
+      <div class="cardwrap">
+        <div class="card">
+          <div class="inner">
+            <h1><span>{{ forloop.counter }}</span>{{ country }}</h1>
+            <div class="text">
+              <p>{{ desc }}</p>
+            </div>
+            <div class="link">
+              <p>Explore {{ country }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

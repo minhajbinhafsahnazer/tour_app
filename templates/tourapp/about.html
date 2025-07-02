@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block carousel %}
+<!-- Suppress the base carousel by overriding with empty block -->
+{% endblock %}
+
+{% block content %}
+<section class="py-5" style="background-color: #041329; padding-top: 90px;">
+  <div class="container">
+    
+    <!-- Header Section -->
+    <div class="row justify-content-center text-center">
+      <div class="col-lg-8">
+        <h1 class="fw-bold text-decoration-none mb-4">About TourWay</h1>
+        <p class="lead text-light">
+          TourWay is your trusted travel companion, dedicated to helping you discover the world one destination at a time.
+          We connect travelers with hidden gems and popular spots alike, all while delivering a seamless digital travel planning experience.
+        </p>
+        <hr class="my-4">
+      </div>
+    </div>
+
+    <!-- Mission & Why Choose Us Section -->
+    <div class="row mt-4">
+      <div class="col-md-6 mb-4">
+        <h4 class="fw-semibold text-light">Our Mission</h4>
+        <p class="text-light">
+          At the heart of our mission is a passion for travel and exploration. We aim to simplify the journey of discovering new destinations by offering accurate, insightful, and authentic information that goes beyond surface-level descriptions. Whether you're a casual traveler, an avid adventurer, or planning your first trip, our platform serves as a trusted companion that helps you make informed decisions.
+
+          We combine intelligent travel planning tools, interactive features, and seamless user experience to remove the complexities often associated with trip preparation. From curated guides and local insights to route planning and must-see highlights, we empower users with everything they need in one place.
+        </p>
+      </div>
+      <div class="col-md-6 mb-4">
+        <h4 class="fw-semibold text-light">Why Choose Us?</h4>
+        <ul class="text-light">
+          <li>Curated destinations with verified content</li>
+          <li>User-friendly interface and real-time updates</li>
+          <li>Community-driven reviews and experiences</li>
+          <li>Reliable, smooth, and mobile-first design</li>
+          <li>Curated destinations with verified content</li>
+          <li>User-friendly interface and real-time updates</li>
+          <li>Community-driven reviews and experiences</li>
+          <li>Reliable, smooth, and mobile-first design</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Footer Image & Message -->
+    <div class="text-center mt-5">
+      <img src="{% static 'images/trip.png' %}" alt="Our Team" class="img-fluid rounded shadow-sm" style="max-height: 300px;">
+      <p class="mt-3 text-light">Built with passion by travelers, for travelers.</p>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

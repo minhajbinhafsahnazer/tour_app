@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block carousel %}
+<!-- Disable base carousel -->
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center text-white mb-5">Popular Destinations</h2>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    {% for destination in destinations %}
+    <div class="col">
+      <div class="card h-100 shadow-sm">
+        {% if destination.images.first %}
+          <img src="{{ destination.images.first.image.url }}" class="card-img-top" alt="{{ destination.place_name }}">
+        {% else %}
+          <img src="{% static 'images/default.jpg' %}" class="card-img-top" alt="Default image">
+        {% endif %}
+
+        <div class="card-body">
+          <h5 class="card-title">{{ destination.place_name }}</h5>
+          <p class="card-text"><strong>Weather:</strong> {{ destination.weather }}</p>
+          <p class="card-text"><strong>State:</strong> {{ destination.state }}</p>
+          <p class="card-text"><strong>District:</strong> {{ destination.district }}</p>
+          <p class="card-text">{{ destination.description|truncatewords:20 }}</p>
+        </div>
+
+        <div class="card-footer text-center">
+          {% if destination.map_link %}
+            <a href="{{ destination.map_link }}" target="_blank" class="btn btn-outline-primary btn-sm">View on Map</a>
+          {% endif %}
+          <a href="{% url 'destination_detail' destination.id %}" class="btn btn-outline-secondary btn-sm">Details</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

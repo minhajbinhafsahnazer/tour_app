@@ -4,6 +4,7 @@ from django import forms
 from .models import Destination, DestinationImage
 
 class DestinationForm(forms.ModelForm):
+    image = forms.ImageField(required=False, label='Upload Image')
 
     class Meta:
         model = Destination

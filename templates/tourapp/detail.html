@@ -1,39 +1,29 @@
 {% extends "base.html" %}
-{% block content %}
 {% load static %}
 
-<h2 class="mb-4">{{ destination.place_name }}</h2>
+{% block carousel %}{% endblock %}
 
-{% if destination.images.all %}
-<div class="row mb-4">
-    {% for img in destination.images.all %}
-    <div class="col-md-4 mb-3">
-        <img src="{{ img.image.url }}" 
-             alt="Image for {{ destination.place_name }}" 
-             class="img-fluid rounded shadow-sm"
-             style="height: 200px; object-fit: cover; width: 100%;">
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4 text-center">{{ destination.place_name }}</h2>
+  
+  <div class="row">
+    <div class="col-md-6">
+      <p><strong>Weather:</strong> {{ destination.weather }}</p>
+      <p><strong>State:</strong> {{ destination.state }}</p>
+      <p><strong>District:</strong> {{ destination.district }}</p>
+      <p>{{ destination.description }}</p>
+      {% if destination.map_link %}
+        <a href="{{ destination.map_link }}" target="_blank" class="btn btn-primary mt-2">View on Map</a>
+      {% endif %}
     </div>
-    {% endfor %}
+    <div class="col-md-6">
+      {% for image in images %}
+        <img src="{{ image.image.url }}" class="img-fluid rounded mb-3" alt="Image for {{ destination.place_name }}">
+      {% empty %}
+        <img src="{% static 'images/default.jpg' %}" class="img-fluid rounded" alt="No image available">
+      {% endfor %}
+    </div>
+  </div>
 </div>
-{% endif %}
-
-<p><strong>State:</strong> {{ destination.state }}</p>
-<p><strong>District:</strong> {{ destination.district }}</p>
-<p><strong>Weather:</strong> {{ destination.weather }}</p>
-<p><strong>Description:</strong> {{ destination.description }}</p>
-
-{% if destination.map_link %}
-<p><strong></strong>
-    <a href="{{ destination.map_link }}" target="_blank">
-        <img src="{% static 'images/map.png' %}" alt="View on Map" width="120">
-    </a>
-</p>
-{% endif %}
-
-
-<div class="mt-4">
-    <a href="{% url 'update_destination' destination.id %}" class="btn btn-warning me-2">Update</a>
-    <a href="{% url 'delete_destination' destination.id %}" class="btn btn-danger">Delete</a>
-</div>
-
 {% endblock %}
