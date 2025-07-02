@@ -23,10 +23,16 @@ TourProject is a user-friendly web application to add, view, and manage travel d
 
 ## 📸 Screenshots
 
-### Homepage
+### New Homepage
+<img src="screenshots/newhome.png" width="700">
+
+### New Destination Page
+<img src="screenshots/newdestination.png" width="700">
+
+### Old Homepage
 <img src="screenshots/home.png" width="700">
 
-### Destination Page
+### Old Destination Page
 <img src="screenshots/add_destination.png" width="700">
 
 ---
